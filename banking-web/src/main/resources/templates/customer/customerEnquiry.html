@@ -63,18 +63,21 @@
      <div class="form-group">
       <label for="accType">A/C type:</label>
       <select style="width: 60%;"  class="form-control" th:field="*{accType}">
-         <option value="SAVING">SAVING</option>
-         <option value="CURRENT">CURRENT</option>
-         <option value="CORPORATE">CORPORATE</option>
-         <option value="CHECKING">CHECKING</option>
+<!--          <option value="SAVING">SAVING</option> -->
+<!--          <option value="CURRENT">CURRENT</option> -->
+<!--          <option value="CORPORATE">CORPORATE</option> -->
+<!--          <option value="CHECKING">CHECKING</option> -->
+			<option th:each="accType :${accoutTypeVOs}" th:value="${accType.name}" th:text="${accType.name}"></option>
       </select>
     </div>
    
    <div class="form-group">
       <label for="location">Location:</label>
       <select style="width: 80%;"  class="form-control" th:field="*{location}">
-         <option value="Fremont">Fremont</option>
-         <option value="California">California</option>
+      	<option th:each="location :${locationVOs}"  th:value="${location.name}" th:text="${location.name}">
+      	</option>
+<!--          <option value="Fremont">Fremont</option> -->
+<!--          <option value="California">California</option> -->
       </select>
     </div>
    

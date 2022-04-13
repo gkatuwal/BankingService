@@ -51,6 +51,8 @@ public class UserSpringSecuirtyAuthProvider implements UserDetailsService {
 						}else{*/
 							user =  new User(userSessionVO.getUsername(), userSessionVO.getPassword(),	true,true,true,true,
 									getAuthorities(userSessionVO.getRoles()));
+									
+								
 						//}
 					}else{
 						UsernameNotFoundException ex=new UsernameNotFoundException("Sorry user is not in database");

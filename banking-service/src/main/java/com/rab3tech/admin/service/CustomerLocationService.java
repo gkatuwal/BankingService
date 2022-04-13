@@ -13,4 +13,6 @@ public interface CustomerLocationService {
 	Optional<LocationVO> findById(int lid);
 
 	void update(LocationVO locationVO);
+
+	public void delete(int i);
 }

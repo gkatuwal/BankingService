@@ -265,14 +265,20 @@ public class CustomerServiceImpl implements CustomerService {
 		//I have loaded entity inside persistence context - >>Session
 		Customer customer=customerRepository.findById(customerVO.getCid()).get();
 		try {
-			customer.setImage(customerVO.getPhoto().getBytes());
+			
+			//if customerVo is not containing any image donot update it
+			if(customerVO.getPhoto().getBytes().length != 0) {
+				customer.setImage(customerVO.getPhoto().getBytes());
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		customer.setName(customerVO.getName());
 		customer.setMobile(customerVO.getMobile());
 		customer.setDom(new Timestamp(new Date().getTime()));
-		///customerRepository.save(customer);
+
+		customerRepository.save(customer);
 	}
 	
 	@Override
@@ -404,7 +410,11 @@ public class CustomerServiceImpl implements CustomerService {
 	     List<AccountTypeVO> accountsVO =  new ArrayList<AccountTypeVO>();
 	     for(AccountType account : accounts) {
 		    AccountTypeVO accountVO = new AccountTypeVO();
-		    BeanUtils.copyProperties(account, accountVO);
+		    BeanUtils.copyProperties(account.getName(), accountVO);
+		    accountVO.setName(account.getName());
+		    System.out.println("***********" +  accountVO.getName());
+//		    accountVO.setName(account.getName());
+		    
 		     accountsVO.add(accountVO);
 	      }
     	return accountsVO;

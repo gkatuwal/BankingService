@@ -39,6 +39,8 @@ public class LocationServiceImpl implements LocationService{
 			loginVO.setUsername(location.getLogin().getLoginid());
 			System.out.println("=======================" + loginVO.getUsername());
 			locationVO.setLogin(loginVO);
+			locationVO.setName(location.getLocation());
+//			System.out.println("this is location name " + location.getLocation());
 			
 			locationVOs.add(locationVO);
 		}
@@ -58,6 +60,7 @@ public class LocationServiceImpl implements LocationService{
 			location.setLcode(alcode);
 			location.setLocation(alocation);
 			location.setDoe(new Timestamp(new Date().getTime()));
+			location.setDom(new Timestamp(new Date().getTime()));
 			
 			locationRepository.save(location);
 			

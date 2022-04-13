@@ -201,6 +201,8 @@ public class EmailServiceImpl implements EmailService{
 	        props.put("location", "Fremont CA100 , USA");
 	        props.put("email", "javahunk2020@gmail.com");
 	        context.setVariables(props);
+//	        System.out.println(mail.getUsername());
+	     
 	        String html = templateEngine.process("password-email-template", context);
 	        helper.setTo(mail.getTo());
 	        helper.setText(html, true);

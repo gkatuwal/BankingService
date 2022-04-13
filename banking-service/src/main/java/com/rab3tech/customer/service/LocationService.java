@@ -11,4 +11,5 @@ public interface LocationService {
 	String updateLocation(UpdateLocationVO updateLocationVO);
 	String addLocation(String lcode, String location);
 
+
 }
