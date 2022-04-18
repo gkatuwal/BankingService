@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rab3tech.common.service.BranchService;
+import com.rab3tech.customer.service.CustomerService;
 import com.rab3tech.customer.service.LoginService;
 import com.rab3tech.customer.service.impl.SecurityQuestionService;
 import com.rab3tech.vo.BranchVO;
 import com.rab3tech.vo.CustomerSecurityQueAnsVO;
+import com.rab3tech.vo.CustomerVO;
 import com.rab3tech.vo.LoginVO;
+import com.rab3tech.vo.RoleVO;
 import com.rab3tech.vo.SecurityQuestionsVO;
 
 @Controller
@@ -38,6 +41,10 @@ public class LoginController {
 	
 	@Autowired
 	private BranchService branchService;
+	
+	//NewCode
+	@Autowired
+	private  CustomerService customerService;
 		
 	
 	@GetMapping("/bank/showBranch")
@@ -123,6 +130,13 @@ public class LoginController {
 						}
 						break;
 					case "ADMIN":
+						//newCode for list of customer
+						   List<CustomerVO> customerVOs=customerService.findCustomers();
+						   model.addAttribute("customerVOs", customerVOs);
+						   
+						  //code for role
+//						   List<loginVo> loginVOs = customerService.findUserByUsername(String loginid);
+//						   model.addAttribute("roleVOs", roleVOs);
 						viewName ="admin/dashboard";
 						break;	
 						

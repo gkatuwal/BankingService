@@ -52,7 +52,7 @@
 		<img th:src="@{/images/customer_dashboard.jpg}" alt="page" /> <span
 			th:utext="${error}" style="color: red; font-size: 18px;"></span>
 		<div style="width: 70%"></div>
-		
+
 		<div style="width: 100%">
 			<hr />
 
@@ -64,23 +64,57 @@
 						<td>Name</td>
 						<td>Email</td>
 						<td>Photo</td>
+						<td>Type</td>
+
 					</tr>
 				</thead>
 				<tbody>
-<!-- 					<tr th:each="customerVO,iter: ${customerVOs}"> -->
-<!-- 						<td th:text="${customerVO.id}"> -->
-<!-- 						<td th:text="${customerVO.name}"> -->
-<!-- 						<td th:text="${customerVO.email}" /> -->
-<!-- 						<td><img -->
-<!-- 							th:src="@{'/admin/customers/photo?cid=' + ${customerVO.id}}" -->
-<!-- 							style="height: 100px;" /></td> -->
-<!-- 					</tr> -->
+					<tr th:each="customerVO,iter: ${customerVOs}">
+						<td th:text="${customerVO.id}">
+						<td th:text="${customerVO.name}">
+						<td th:text="${customerVO.email}" />
+
+						<td><img
+							th:src="@{'/admin/customers/photo?cid=' + ${customerVO.id}}"
+							style="height: 100px;" /></td>
+						<td th:text="${customerVO.role}">
+<!-- 							<tr th:each="roleVO,iter: ${roleVOs}"> -->
+<!-- 								<td th:text="${customerVO.name}"> -->
+<!-- 							</tr>  -->
+							
+						
 				</tbody>
 			</table>
 			<br />
 			<hr />
 		</div>
 	</div>
+
+	<!-- 	<div style="width: 100%"> -->
+	<!-- 		<hr /> -->
+
+	<!-- 		<table id="enquiryList" class="table table-striped table-bordered" -->
+	<!-- 			style="width: 100%"> -->
+	<!-- 			<thead> -->
+	<!-- 				<tr> -->
+
+	<!-- 					<td>Name</td> -->
+	<!-- 					<td>description</td> -->
+	<!-- 				</tr> -->
+	<!-- 			</thead> -->
+	<!-- 			<tbody> -->
+	<!-- 				<tr th:each="roleVO,iter: ${roleVOs}"> -->
+
+	<!-- 					<td th:text="${roleVO.name}"> -->
+	<!-- 					<td th:text="${roleVO.description}" /> -->
+
+	<!-- 				</tr> -->
+	<!-- 			</tbody> -->
+	<!-- 		</table> -->
+	<!-- 		<br /> -->
+	<!-- 		<hr /> -->
+	<!-- 	</div> -->
+	<!-- 	</div> -->
 	<footer class="ffooter"> </footer>
 
 </body>

@@ -56,7 +56,7 @@ public class Location {
 		this.dom = dom;
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "owner", nullable = false)
 	public Login getLogin() {
 		return login;

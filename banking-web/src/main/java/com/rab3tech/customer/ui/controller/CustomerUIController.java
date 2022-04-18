@@ -63,7 +63,7 @@ import com.rab3tech.vo.PayeeInfoVO;
  *
  */
 @Controller
-@RequestMapping("/customer")
+//@RequestMapping("/customer")
 public class CustomerUIController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomerUIController.class);
@@ -92,12 +92,6 @@ public class CustomerUIController {
 	@Autowired
 	private CustomerProfilePicService customerProfilePicService;
 	
-	@GetMapping("/")
-	public String showCustomers(Model model) {
-	   List<CustomerVO> customerVOs=customerService.findCustomers();
-	   model.addAttribute("customerVOs", customerVOs);
-	   return "customer/dashboard";
-	}
 
 	@PostMapping("/customer/profile/update")
 	public String updateCustomer(int cid, String name, String jobTitle) throws IOException {
@@ -358,12 +352,18 @@ public class CustomerUIController {
 	 * }
 	 */
 
+
 	@GetMapping(value = { "/customer/account/enquiry", "/", "/mocha", "/welcome" })
 	public String showCustomerEnquiryPage(Model model) {
 		// LoadLocationAndAccountVO loadLocationAndAccountVOs = new
 		// LoadLocationAndAccountVO();
 
 		CustomerSavingVO customerSavingVO = new CustomerSavingVO();
+		
+		//new code
+//		   List<CustomerVO> customerVOs=customerService.findCustomers();
+//		   System.out.println(customerVOs);
+//		   model.addAttribute("customerVOs", customerVOs);
 
 		// List of Location
 		List<LocationVO> locationVOs = locationService.findLocations();

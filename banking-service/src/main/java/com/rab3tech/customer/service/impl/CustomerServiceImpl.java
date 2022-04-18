@@ -230,15 +230,27 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<CustomerVO> findCustomers() {
 		List<Customer> customers = customerRepository.findAll();
 		
-		/*
-		 * List<CustomerVO> customerVOs=new ArrayList<CustomerVO>(); 
-		 * for(Customer customer:customers) {
-		 *  CustomerVO customerVO=CustomerMapper.toVO(customer);
-		 * customerVOs.add(customerVO); } return customerVOs;
-		 */
-		return customers.stream(). //Stream<Customer>
-		map(CustomerMapper::toVO).//Stream<CustomerVO>
-		collect(Collectors.toList()); //List<CustomerVO>
+		
+		 List<CustomerVO> customerVOs=new ArrayList<CustomerVO>(); 
+		 for(Customer customer:customers) {
+		 CustomerVO customerVO=CustomerMapper.toVO(customer);		 
+		 Set<Role> roles = customer.getLogin().getRoles();
+		 for(Role role: roles ) {
+			 if(!"admin".equals(role.getName())) {
+				 customerVO.setRole(role.getName());
+				 customerVOs.add(customerVO); 
+			 }
+			 
+		 }
+		 
+		 
+		 }
+		 return customerVOs;
+		 
+	
+//		return customers.stream(). //Stream<Customer>
+//		map(CustomerMapper::toVO).//Stream<CustomerVO>
+//		collect(Collectors.toList()); //List<CustomerVO>
 	}
 	
 	
@@ -369,6 +381,7 @@ public class CustomerServiceImpl implements CustomerService {
 		   customerVO.setAddress(customerEntity.getAddress());
 		   customerVO.setMobile(customerEntity.getMobile());
 		   customerVO.setJobTitle(customerEntity.getJobTitle());
+		   
 	   }
 	   return customerVO;
    }
