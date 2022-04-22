@@ -64,6 +64,8 @@ public interface CustomerService {
 
 	FundTransferVO executeTransaction(FundTransferVO fundTransferVO);
 
+	List<CustomerVO> findCustomers(String getType);
+
 	
 
 }

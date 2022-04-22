@@ -16,18 +16,23 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rab3tech.admin.service.impl.RoleService;
 import com.rab3tech.common.service.BranchService;
 import com.rab3tech.customer.service.CustomerService;
 import com.rab3tech.customer.service.LoginService;
 import com.rab3tech.customer.service.impl.SecurityQuestionService;
+import com.rab3tech.dao.entity.Role;
 import com.rab3tech.vo.BranchVO;
 import com.rab3tech.vo.CustomerSecurityQueAnsVO;
 import com.rab3tech.vo.CustomerVO;
 import com.rab3tech.vo.LoginVO;
 import com.rab3tech.vo.RoleVO;
 import com.rab3tech.vo.SecurityQuestionsVO;
+
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 @Controller
 public class LoginController {
@@ -45,6 +50,9 @@ public class LoginController {
 	//NewCode
 	@Autowired
 	private  CustomerService customerService;
+	
+	@Autowired
+	private RoleService roleService;
 		
 	
 	@GetMapping("/bank/showBranch")
@@ -133,10 +141,11 @@ public class LoginController {
 						//newCode for list of customer
 						   List<CustomerVO> customerVOs=customerService.findCustomers();
 						   model.addAttribute("customerVOs", customerVOs);
-						   
-						  //code for role
-//						   List<loginVo> loginVOs = customerService.findUserByUsername(String loginid);
-//						   model.addAttribute("roleVOs", roleVOs);
+						   //
+						   List<RoleVO> rolesVOs=roleService.findRoles();
+						   System.out.println(rolesVOs);
+						   model.addAttribute("rolesVOs",rolesVOs);
+
 						viewName ="admin/dashboard";
 						break;	
 						
@@ -155,6 +164,14 @@ public class LoginController {
 		return viewName;	//dashboard.html
 	}	
 	
+	@PostMapping("/getroleMember")
+	public String Dashboard(@RequestParam String role,Model model) {
+		System.out.println(role);
+		   List<CustomerVO> customerVOs=customerService.findCustomers();
+		   model.addAttribute("customerVOs", customerVOs);
+		   return null;
+//		return "admin/dashboard";
+	}
 	
 	/*@PostMapping(value= {"/customer/login","/auth"})
 	public String postLogin(@ModelAttribute LoginVO loginVO,HttpSession session,Model model) {

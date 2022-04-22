@@ -360,11 +360,6 @@ public class CustomerUIController {
 
 		CustomerSavingVO customerSavingVO = new CustomerSavingVO();
 		
-		//new code
-//		   List<CustomerVO> customerVOs=customerService.findCustomers();
-//		   System.out.println(customerVOs);
-//		   model.addAttribute("customerVOs", customerVOs);
-
 		// List of Location
 		List<LocationVO> locationVOs = locationService.findLocations();
 		model.addAttribute("locationVOs", locationVOs);
