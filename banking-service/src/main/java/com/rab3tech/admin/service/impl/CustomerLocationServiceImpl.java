@@ -91,8 +91,7 @@ public class CustomerLocationServiceImpl implements CustomerLocationService{
 	@Override
 	public void update(LocationVO locationVO) {
 		Location location = customerLocationRepository.findById(locationVO.getId()).get();
-		//New code
-	
+		//New code	
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userName = auth.getName();
 		Login login = new Login();

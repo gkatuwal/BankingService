@@ -53,20 +53,11 @@
 			th:utext="${error}" style="color: red; font-size: 18px;"></span>
 		<div style="width: 70%"></div>
 		<div style="width: 25%">
-			<!-- 		<form th:action="@{/customer/login}" method="POST"   id="loginForm"  name="loginForm"> -->
-			<!-- 			<div alight="left"> -->
-			<!-- 				<select name="role" id="role" class="form-control"> -->
-			<!-- 					<option value="role" th:each="roleVO,iter: ${rolesVOs}"> -->
-			<!-- 						<td value="${role.id}" th:text="${roleVO.name}"> -->
-			<!-- 					</option> -->
-
-			<!-- 				</select> -->
-			<!-- 		</form> -->
 			<div class="form-group">
 				<form th:action="@{/admin/filtercustomers}" method="GET">
 					<select name="getType">
 						<option th:each="roleVO,iter: ${rolesVOs}">
-							<td  value="${roleVO.name}" th:text="${roleVO.name}">
+							<td value="${roleVO.name}" th:text="${roleVO.name}">
 						</option>
 						<!-- 					         <option value="ADMIN">Admin</option> -->
 						<!-- 					         <option value="CUSTOMER">Customer</option> -->
@@ -76,9 +67,7 @@
 				</form>
 			</div>
 		</div>
-		<div style="width: 100%">
-			<hr />
-		</div>
+
 
 		<table id="enquiryList" class="table table-striped table-bordered"
 			style="width: 100%">
@@ -106,33 +95,7 @@
 		<br />
 		<hr />
 	</div>
-	</div>
-
-	<!-- 	<div style="width: 100%"> -->
-	<!-- 		<hr /> -->
-
-	<!-- 		<table id="enquiryList" class="table table-striped table-bordered" -->
-	<!-- 			style="width: 100%"> -->
-	<!-- 			<thead> -->
-	<!-- 				<tr> -->
-
-	<!-- 					<td>Name</td> -->
-	<!-- 					<td>description</td> -->
-	<!-- 				</tr> -->
-	<!-- 			</thead> -->
-	<!-- 			<tbody> -->
-	<!-- 				<tr th:each="roleVO,iter: ${roleVOs}"> -->
-
-	<!-- 					<td th:text="${roleVO.name}"> -->
-	<!-- 					<td th:text="${roleVO.description}" /> -->
-
-	<!-- 				</tr> -->
-	<!-- 			</tbody> -->
-	<!-- 		</table> -->
-	<!-- 		<br /> -->
-	<!-- 		<hr /> -->
-	<!-- 	</div> -->
-	<!-- 	</div> -->
+	
 	<footer class="ffooter"> </footer>
 
 </body>

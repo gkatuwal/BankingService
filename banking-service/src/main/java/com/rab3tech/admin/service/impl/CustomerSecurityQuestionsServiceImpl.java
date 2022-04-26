@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rab3tech.admin.dao.repository.CustomerSecurityQuestionsRepository;
 import com.rab3tech.admin.service.CustomerSecurityQuestionsService;
 import com.rab3tech.dao.entity.SecurityQuestions;
+import com.rab3tech.vo.LoginVO;
 import com.rab3tech.vo.SecurityQuestionsVO;
 
 @Service
@@ -60,5 +63,30 @@ public class CustomerSecurityQuestionsServiceImpl  implements CustomerSecurityQu
 		SecurityQuestions securityQuestions=new SecurityQuestions (0,question,"yes",loginid,new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()));
 		customerSecurityQuestionsDao.save(securityQuestions);
 	}
+
+
+	@Override
+	public void delete(int id) {
+		customerSecurityQuestionsDao.deleteById(id);
+		
+	}
+
+	@Override
+	public void updateSecurityQuestion(SecurityQuestionsVO securityQuestionsVO, String loginid) {
+	
+		SecurityQuestions securityQuestions = customerSecurityQuestionsDao.findById(securityQuestionsVO.getQid()).get();
+		securityQuestions.setOwner(loginid);
+		securityQuestions.setQuestions(securityQuestionsVO.getQuestions());
+		securityQuestions.setStatus(securityQuestionsVO.getStatus());
+		
+		customerSecurityQuestionsDao.save(securityQuestions);
+
+
+		
+	}
+
+
+
+
 
 }

@@ -39,14 +39,10 @@ public class CustomerController {
 
 		List<CustomerVO> customers = new ArrayList<CustomerVO>();
 
-		for (CustomerVO customer : customerVOs) {
-			System.out.println(customer.getRole());
+		for (CustomerVO customer : customerVOs) {			
 			if (getType.equals(customer.getRole())) {
-				System.out.println(customer);
 				customers.add(customer);
-
 			}
-
 		}
 		model.addAttribute("customerVOs", customers);
 		return "admin/dashboard";

@@ -1,5 +1,6 @@
 package com.rab3tech.admin.ui.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rab3tech.admin.service.CustomerSecurityQuestionsService;
+import com.rab3tech.vo.LocationVO;
 import com.rab3tech.vo.LoginVO;
 import com.rab3tech.vo.SecurityQuestionsVO;
 
@@ -46,5 +49,19 @@ public class SecurityQuestionsController {
 		securityQuestionsService.addSecurityQuestion(question,loginid);
 		return "redirect:/admin/security/questions";
 	}
+	@PostMapping("/update/question")
+	public String updateSecurityQuestion(@ModelAttribute SecurityQuestionsVO securityQuestionsVO,HttpSession session) {
+		//When user logged in 
+		LoginVO  loginVO=(LoginVO)session.getAttribute("userSessionVO");		
+		String loginid=loginVO.getUsername();
 
+		securityQuestionsService.updateSecurityQuestion(securityQuestionsVO,loginid);
+		return "redirect:/admin/security/questions";
+	}
+	@PostMapping("/delete/question")
+	public String deleteQuestion(@RequestParam String id, Model model) throws IOException{
+		int qid = Integer.parseInt(id);
+		securityQuestionsService.delete(qid);
+		return "redirect:/admin/security/questions";
+	}
 }
